@@ -1,0 +1,150 @@
+<!doctype html>
+	<html>
+		<head>
+			<title>Mini Project</title>
+			<script src="jquery-3.2.1.js"> </script>
+			<style type="text/css">
+				
+				label{
+				font-family:Sans-serif;
+				font-size:25px;
+				font-weight:600;
+				width:250px;
+				float:left;
+				margin-top:0;					
+				}
+			
+				.inputtext{
+				width:300px;
+				height:30px;
+				margin-left:100px;
+				border-color:lightgrey;
+				border-radius:10px;
+				font-size:20px;
+				padding:5px;
+				border-width: 1px;
+				}
+
+				.inputmargin{
+				margin:0px
+				}				
+				
+				#submitbutton{
+				border-radius:8px;
+				margin-left:350px;
+				width:150px;
+				font-size:30px;
+				height:50px;
+				border:grey solid 1.5px;
+				margin-top:4px;
+				}
+				
+				body{
+				width:800px;
+				margin:0 auto;
+				padding : 20px;
+				}
+				
+				.comments{
+				margin-left:360px;			
+				margin-top:1px;
+				color:red;
+				height:18px;
+				font-family: Arial;
+				font-size: 14px;
+				width: 250px;
+				}				
+			</style>
+		</head>
+		<body>		
+			<div id="emailmaindiv">
+				<label for="email">Email</label>
+				<input type="text" id="email" class="inputtext" name="email" placeholder="example@example.com">
+				<div id="emailcomment" class="comments"> </div>
+			</div>
+			
+			<div id="phonemaindiv" class="inputmargin">
+				<label for="phone">Telephone</label>
+				<input type="text" id="phone" class="inputtext" name="phone" placeholder="0123456789">
+				<div id="phonecomment" class="comments"> </div>
+			</div>
+			
+			<div id="pwmaindiv" class="inputmargin">
+				<label for="password">Password</label>
+				<input type="password" id="password" class="inputtext" name="password">
+				<div id="pwcomment" class="comments"> </div>
+			</div>
+			
+			<div id="conpwmaindiv" class="inputmargin">
+				<label for="conpassword">Confirm Password</label>
+				<input type="password" id="conpassword" class="inputtext" name="conpassword">
+				<div id="conpwcomment" class="comments"> </div>
+			</div>			
+			<input type="submit" id="submitbutton" value="Sign up"> 	
+		
+			<script type="text/javascript">
+			
+				$("#submitbutton").click(function(){
+					var errmessage= "";
+					var missingmessage= "";
+					
+					if($("#email").val()==""){
+						$("#email").css({"border-color":"red","border-style":"solid"})
+						$("#emailcomment").text("Email is missing")}
+									
+					if($("#phone").val()==""){
+						$("#phone").css({"border-color":"red","border-style":"solid"})
+						$("#phonecomment").text("Phone is missing")}
+									
+					if($("#password").val()==""){
+						$("#password").css({"border-color":"red","border-style":"solid"})
+						$("#pwcomment").text("Password is missing")}
+									
+					if($("#conpassword").val()==""){
+						$("#conpassword").css({"border-color":"red","border-style":"solid"})
+						$("#conpwcomment").text("Password confirmation is missing")}
+								
+					var checkmail =  /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/
+					var mailresult = checkmail.test($("#email").val())
+					
+					if(($("#email").val() != "") && (mailresult == false)){
+						$("#email").css({"border-color":"red","border-style":"solid"})
+						$("#emailcomment").text("Invalid Email")}
+								
+					
+					var checkphone =/^[0-9]+$/
+					var phoneresult = checkphone.test($("#phone").val())
+					
+					if((phoneresult == false) && ($("#phone").val()!="")){
+						$("#phone").css({"border-color":"red","border-style":"solid"})
+						$("#phonecomment").text("Invalid Phone Number")}	
+						
+						
+					if($("#password").val()!=$("#conpassword").val()){
+						$("#password").css({"border-color":"red","border-style":"solid"});
+						$("#conpassword").css({"border-color":"red","border-style":"solid"});
+						$("#conpwcomment").text("Passwords not matching")
+						$("#pwcomment").text("")}
+							
+				
+					if(mailresult == true){
+						$("#email").css({"border-color":"lightgrey","border-style":"solid"})
+						$("#emailcomment").text("")}
+						
+					if(phoneresult == true){
+						$("#phone").css({"border-color":"lightgrey","border-style":"solid"})
+						$("#phonecomment").text("")}
+						
+					if(($("#password").val() == $("#conpassword").val()) && ($("#password").val() != "")){
+						$("#password").css({"border-color":"lightgrey","border-style":"solid"});
+						$("#conpassword").css({"border-color":"lightgrey","border-style":"solid"});
+						$("#pwcomment").text("");
+						$("#conpwcomment").text("")}		
+				})
+				
+				$("input").focus(function(){
+				$(this).css("border-color","lightgrey");
+				});					
+			</script>
+		</body>
+	</html>
